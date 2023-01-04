@@ -4,6 +4,19 @@ local KeyWindow = OrionLib:MakeWindow({Name = "Team Bloxxer Key System", HidePre
 
 
 
+function discordnotification()
+syn.write_clipboard("https://discord.gg/Puy6SYbDC6")
+
+	OrionLib:MakeNotification({
+		Name = "Join the discord!",
+		Content = "Team Bloxxer request that you join the official Team Bloxxer Discord Server! It has been copied to your clipboard.",
+		Image = "rbxassetid://12022925290",
+		Time = 6
+	})
+end
+
+
+
 _G.BloxxerKey = "Bloxxer"
 _G.NormalKey = "yes"
 _G.KeyInput = "string"
@@ -59,7 +72,7 @@ function MakeHub()
 					end)
 				end
 			end)
-		end										
+		end
 
 
 		-- Tabs
@@ -174,7 +187,10 @@ function MakeHub()
 
 		-- TextBox
 		
-		
+		wait(3)
+		discordnotification()
+
+
 	else if game.PlaceId == 2788229376 then
 		local DaHoodHub = OrionLib:MakeWindow({Name = "BloxxerHub | Da Hood", HidePremium = false, IntroText = "Team Bloxxer", IntroIcon = "rbxassetid://12022925290", Icon = "rbxassetid://12022925290", SaveConfig = true, ConfigFolder = "BloxxerConfig"})
 		
@@ -194,7 +210,6 @@ function MakeHub()
 					Time = 5
 				})
 			end
-
 			
 		end
 		
@@ -211,6 +226,7 @@ function MakeHub()
 			Image = "rbxassetid://12022925290",
 			Time = 6
 		})
+
 		
 		
 		-- Values
@@ -251,7 +267,7 @@ function MakeHub()
 			Icon = "rbxassetid://12039944949",
 			PremiumOnly = false
 		})
-		
+
 		-- Sliders
 		
 		LocalPlayerTab:AddSlider({
@@ -309,6 +325,11 @@ function MakeHub()
 		})
 
 		-- TextBox
+
+
+		wait(3)
+		discordnotification()
+
 		
 		else
 			local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
@@ -410,6 +431,9 @@ function MakeHub()
 		
 		
 		-- TextBox
+
+		wait(3)
+		discordnotification()
 		
 		OrionLib:Init()
 	end
