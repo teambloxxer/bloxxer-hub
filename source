@@ -8,7 +8,14 @@ _G.BloxxerKey = "Bloxxer"
 _G.NormalKey = "yes"
 _G.KeyInput = "string"
 
+
+function destroylogin()
+	game:GetService("CoreGui").Orion:Destroy()
+end
+
 function MakeHub()
+	_G.KeyInput = "string"
+	
 	if game.PlaceId == 155615604 then
 		local PrisonLifeHub = OrionLib:MakeWindow({Name = "BloxxerHub | Prison Life", HidePremium = false, IntroText = "Team Bloxxer", IntroIcon = "rbxassetid://12022925290", Icon = "rbxassetid://12022925290", SaveConfig = true, ConfigFolder = "BloxxerConfig"})
 		
@@ -34,6 +41,24 @@ function MakeHub()
 
 
 		-- Functions
+
+		function noclipFunction()
+			game:GetService("RunService").Stepped:Connect(function()
+				if _G.noclipValue == true then
+					pcall(function()
+						game.Players.LocalPlayer.Character:FindFirstChild("Head").CanCollide = false
+						game.Players.LocalPlayer.Character:FindFirstChild("Torso").CanCollide = false
+						if _G.noclipValue == false then
+							pcall(function()
+								game.Players.LocalPlayer.Character:FindFirstChild("Head").CanCollide = true
+								game.Players.LocalPlayer.Character:FindFirstChild("Torso").CanCollide = true
+							end)
+						end
+					end)
+				end
+			end)
+		end										
+
 
 		-- Tabs
 		
@@ -88,7 +113,7 @@ function MakeHub()
 		
 		
 		ScriptsTab:AddButton({
-			Name = "Septex (Prison Life Admin)",
+			Name = "Septex (Prison Life Admin, requires key now)",
 			Callback = function()
 				loadstring(game:HttpGet(('https://raw.githubusercontent.com/XTheMasterX/Scripts/Main/PrisonLife'),true))()
 			  end    
@@ -98,7 +123,7 @@ function MakeHub()
 		ScriptsTab:AddButton({
 			Name = "Prevail X (Prison Life GUI)",
 			Callback = function()
-				loadstring(game:HttpGet("https://pastebin.com/raw/mHfK0Xk4", true))()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/scam666/Prevail-X/main/src.lua", true))()
 			  end    
 		})
 		
@@ -106,7 +131,7 @@ function MakeHub()
 		ScriptsTab:AddButton({
 			Name = "Admin commands (Prison Life, worse than septex tho)",
 			Callback = function()
-				loadstring(game:HttpGet("https://pastebin.com/raw/mHfK0Xk4", true))()
+				loadstring(game:HttpGet("https://pastebin.com/raw/VPrNqGKU", true))()
 			  end    
 		})
 		
@@ -129,6 +154,15 @@ function MakeHub()
 		
 		-- Toggles
 		
+		LocalPlayerTab:AddToggle({
+			Name = "NoClip",
+			Default = false,
+			Callback = function(Value)
+				_G.noclipValue = Value
+				noclipFunction()
+			end    
+		})
+
 		-- TextBox
 		
 		
@@ -290,10 +324,12 @@ KeyTab:AddButton({
 	Callback = function()
       	if _G.KeyInput == _G.NormalKey then
 			CorrectKeyNormalNotification()
+			destroylogin()
 			wait(3.2)
 			MakeHub()
 		else if _G.KeyInput == _G.BloxxerKey then
 			CorrectKeyBloxxerNotification()
+			destroylogin()
 			wait(3.2)
 			MakeHub()
 		else
